@@ -11,7 +11,7 @@ namespace Data1
 {
     public class DProduct
     {
-        private readonly string connectionString = "Data Source=LAB1504-28\\SQLEXPRESS;Initial Catalog=FacturaDB;User ID=admin;Password=admin";
+        private readonly string connectionString = "Data Source=DESKTOP-0OKTP7C\\MSSQLSERVERRR;Initial Catalog=FacturaDB;User ID=admin;Password=admin";
 
         public List<Product> Get()
         {
@@ -43,6 +43,37 @@ namespace Data1
             }
 
             return products;
+        }
+
+        public void Delete(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("eliminarProducto", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@name", name);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Update(Product product)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("actualizarProducto", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@name", product.name);
+                    command.Parameters.AddWithValue("@price", product.price);
+                    command.Parameters.AddWithValue("@stock", product.stock);
+                    command.Parameters.AddWithValue("@active", product.active);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

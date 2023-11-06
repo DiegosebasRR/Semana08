@@ -28,5 +28,16 @@ namespace Business1
             
             return products;
         }
+        public void Delete(string name)
+        {
+            DProduct data = new DProduct();
+            data.Delete(name);
+        }
+
+        public void Update(Product product)
+        {
+            DProduct data = new DProduct();
+            data.Update(product);
+        }
     }
 }

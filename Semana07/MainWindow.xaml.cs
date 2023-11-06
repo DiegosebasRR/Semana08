@@ -35,5 +35,17 @@ namespace Semana07
             dataGrid.ItemsSource = products;
 
         }
+        private void Button_Ventana1_Click(object sender, RoutedEventArgs e)
+        {
+            Update updateWindow = new Update();
+            updateWindow.Show();
+
+        }
+        private void Button_Ventana2_Click(object sender, RoutedEventArgs e)
+        {
+            Delete deleteWindow = new Delete();
+            deleteWindow.Show();
+        }
+
     }
 }
